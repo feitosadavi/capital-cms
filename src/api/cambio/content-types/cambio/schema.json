@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cambios",
+  "info": {
+    "singularName": "cambio",
+    "pluralName": "cambios",
+    "displayName": "Cambios"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

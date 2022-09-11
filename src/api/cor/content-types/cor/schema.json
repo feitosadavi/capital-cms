@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cores",
+  "info": {
+    "singularName": "cor",
+    "pluralName": "cores",
+    "displayName": "Cores"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}

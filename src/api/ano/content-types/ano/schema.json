@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "anos",
+  "info": {
+    "singularName": "ano",
+    "pluralName": "anos",
+    "displayName": "Anos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "required": true,
+      "unique": true,
+      "min": 1900,
+      "max": 3000,
+      "type": "integer"
+    }
+  }
+}
