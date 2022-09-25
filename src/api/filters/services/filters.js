@@ -29,20 +29,24 @@ module.exports = {
       }
 
       const elements = [
-        { key: 'modelo', label: 'Modelos', query: modeloQuery },
         { key: 'marca', label: 'Marca' },
+        { key: 'modelo', label: 'Modelos', query: modeloQuery },
         { key: 'ano', label: 'Anos' },
         { key: 'combustivel', label: 'Combustivel' },
         { key: 'categoria', label: 'Categoria' },
         { key: 'cor', label: 'Cor' }
       ]
 
+      const getOptionsLabel = (options) => options.map(options => options.label)
+
       for (const element of elements) {
         const options = await findMany(element.key, element.query)
 
+        const sanitizedOptions = getOptionsLabel(options)
+
         delete element['query'] // client will not consume query field
 
-        filterOptions.push({ ...element, options })
+        filterOptions.push({ ...element, options: sanitizedOptions })
       }
 
       return filterOptions

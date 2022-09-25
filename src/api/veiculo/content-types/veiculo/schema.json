@@ -22,9 +22,7 @@
       ]
     },
     "marca": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::marca.marca"
+      "type": "text"
     },
     "modelo": {
       "type": "relation",
