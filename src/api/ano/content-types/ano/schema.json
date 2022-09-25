@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ano",
     "pluralName": "anos",
-    "displayName": "Anos"
+    "displayName": "Anos",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,11 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "label": {
+      "type": "string",
       "required": true,
-      "unique": true,
-      "min": 1900,
-      "max": 3000,
-      "type": "integer"
+      "unique": true
     }
   }
 }
