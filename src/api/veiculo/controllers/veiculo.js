@@ -24,10 +24,12 @@ const sanitizeData = (data, isMultiple) => {
 const sanitizeVehicle = (vehicle) => {
   const sanitizedVehicle = { id: vehicle.id }
   const vehicleAttributes = vehicle.attributes
+  console.log({ vehicleAttributes });
   for (const key of Object.keys(vehicleAttributes)) {
+    console.log({ [key]: vehicleAttributes[key] });
     sanitizedVehicle[key] = (vehicleAttributes[key]?.data?.attributes?.label || vehicleAttributes[key])
   }
-
+  console.log({ sanitizedVehicle });
   const sanitizedPhotos = sanitizePhotos(sanitizedVehicle.photos.data)
   return { ...sanitizedVehicle, photos: sanitizedPhotos }
 }

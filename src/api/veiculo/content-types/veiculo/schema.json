@@ -21,9 +21,6 @@
         "videos"
       ]
     },
-    "marca": {
-      "type": "text"
-    },
     "modelo": {
       "type": "relation",
       "relation": "oneToOne",
@@ -73,6 +70,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::cor.cor"
+    },
+    "marca": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::marca.marca"
     }
   }
 }
