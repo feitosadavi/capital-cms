@@ -7,8 +7,13 @@ module.exports = ({ env }) => ({
       database: process.env.DATABASE_NAME,
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
-      ssl: Boolean(process.env.DATABASE_SSL),
-
+      ssl: {
+        rejectUnauthorized: true,
+        ca:
+          process.env.NODE_ENV === PRODUCTION
+            ? process.env.CA_CERT
+            : fs.readFileSync("ca_cert.crt").toString(),
+      },
       // ssl: false
     },
   },
