@@ -8,7 +8,8 @@ module.exports = ({ env }) => ({
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       ssl: Boolean(process.env.DATABASE_SSL),
-      // ssl: false,
+
+      // ssl: false
     },
   },
 });
