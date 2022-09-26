@@ -10,7 +10,7 @@ module.exports = ({ env }) => ({
       ssl: {
         rejectUnauthorized: true,
         ca:
-          process.env.NODE_ENV === PRODUCTION
+          process.env.NODE_ENV === 'production'
             ? process.env.CA_CERT
             : fs.readFileSync("ca_cert.crt").toString(),
       },
