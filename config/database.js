@@ -11,10 +11,7 @@ module.exports = ({ env }) => ({
       password: process.env.DATABASE_PASSWORD,
       ssl: {
         rejectUnauthorized: true,
-        ca:
-          process.env.NODE_ENV === 'production'
-            ? process.env.CA_CERT
-            : fs.readFileSync("ca_cert.crt").toString(),
+        ca: process.env.CA_CERT
       },
       // ssl: false
     },
