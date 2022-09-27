@@ -34,7 +34,7 @@ const sanitizeVehicle = (vehicle) => {
 module.exports = createCoreController('api::veiculo.veiculo', ({ strapi }) => ({
   async find (ctx) {
     const { data, meta } = await super.find(ctx)
-
+    console.log({ data });
     const sanitizedData = sanitizeData(data, true)
 
     return { meta, data: sanitizedData }
