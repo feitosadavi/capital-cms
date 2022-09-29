@@ -36,7 +36,7 @@ module.exports = createCoreController('api::veiculo.veiculo', ({ strapi }) => ({
     const { data, meta } = await super.find(ctx)
     console.log({ data });
     const sanitizedData = sanitizeData(data, true)
-
+    console.log({ sanitizedData });
     return { meta, data: sanitizedData }
   },
 
