@@ -10,7 +10,7 @@ module.exports = {
       const body = JSON.parse(ctx.request.body)
       const {
         dadosPessoais: { nome, email, telefone },
-        dadosCarro: { marca, modelo, cor }
+        dadosCarro: { marca, modelo, preco }
       } = body
       const wppLink = `https://api.whatsapp.com/send?phone=${telefone}`
 
@@ -26,7 +26,7 @@ module.exports = {
           <h2>Dados do carro</h2>
           <p><bold>Marca: <bold>${marca}</p>
           <p><bold>Modelo: <bold>${modelo}</p>
-          <p><bold>Cor: <bold>${cor}</p>
+          <p><bold>Preço desejado: <bold>${preco}</p>
 
           <h2>Dados do cliente</h2>
           <p><bold>Nome: <bold>${nome}</p>
