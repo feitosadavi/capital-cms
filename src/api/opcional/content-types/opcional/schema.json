@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "opcionais",
+  "info": {
+    "singularName": "opcional",
+    "pluralName": "opcionais",
+    "displayName": "Opcionais"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

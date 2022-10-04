@@ -4,7 +4,8 @@
   "info": {
     "singularName": "testemunho",
     "pluralName": "testemunhos",
-    "displayName": "Testemunho"
+    "displayName": "Testemunhos",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,14 +21,26 @@
       "required": true
     },
     "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false,
+      ]
+    },
+    "estrelas": {
+      "type": "integer",
+      "required": true
+    },
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "redeSocial": {
+      "type": "string",
       "required": true
     }
   }

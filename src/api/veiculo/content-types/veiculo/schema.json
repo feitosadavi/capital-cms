@@ -38,15 +38,6 @@
     "descricao": {
       "type": "text"
     },
-    "opcionais": {
-      "type": "enumeration",
-      "enum": [
-        "Vidro elétrico",
-        "Trava",
-        "Ar condicionado",
-        "Computador de bordo"
-      ]
-    },
     "categoria": {
       "type": "relation",
       "relation": "oneToOne",
@@ -75,6 +66,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::marca.marca"
+    },
+    "opcionais": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::opcional.opcional"
     }
   }
 }
