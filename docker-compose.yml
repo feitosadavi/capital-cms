@@ -1,0 +1,82 @@
+version: '3'
+services:
+  # letsencrypt:
+    # image: linuxserver/letsencrypt
+    # container_name: letsencrypt
+    # # environment:
+    # #   - PUID=1000
+    # #   - PGID=1000
+    # #   - TZ=Europe/London
+    # #   - URL=example.com
+    # #   - SUBDOMAINS=wildcard,
+    # #   - VALIDATION=dns
+    # #   - DNSPLUGIN=<dns-provider>
+    # #   - EMAIL=<e-mail>
+    # #   - DHLEVEL=4096
+    # volumes:
+    #   - </path/to/appdata/config>:/config
+    # restart: unless-stopped
+  db:
+    container_name: db
+    image: postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - '5432:5432'
+    networks:
+      - app-network
+
+  meilisearch:
+    container_name: meilisearch
+    hostname: meilisearch
+    image: getmeili/meilisearch:latest
+    ports:
+      - 7700:7700
+    networks:
+      - app-network
+
+  strapi:
+    build: .
+    container_name: strapi
+    hostname: strapi
+    command: "yarn start"
+    depends_on:
+      - db
+      - meilisearch
+    env_file:
+      - .env
+    environment:
+    - DATABASE_USERNAME=${DATABASE_USERNAME}
+    - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    - DATABASE_NAME=${DATABASE_NAME}
+    ports:
+      - '1337:1337'
+    networks:
+      - app-network
+
+  reverseproxy:
+    container_name: reverseproxy
+    hostname: reverseproxy
+    image: nginx
+    depends_on:
+      - strapi
+      - meilisearch
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/config:/etc/nginx
+      # - ./nginx/ssl:/etc/ssl/private
+    networks:
+      - app-network
+
+# volumes:
+#   nginx:
+  # ssl:
+networks:
+  app-network:
+    driver: bridge
