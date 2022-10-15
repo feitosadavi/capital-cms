@@ -1,21 +1,5 @@
 version: '3'
 services:
-  # letsencrypt:
-    # image: linuxserver/letsencrypt
-    # container_name: letsencrypt
-    # # environment:
-    # #   - PUID=1000
-    # #   - PGID=1000
-    # #   - TZ=Europe/London
-    # #   - URL=example.com
-    # #   - SUBDOMAINS=wildcard,
-    # #   - VALIDATION=dns
-    # #   - DNSPLUGIN=<dns-provider>
-    # #   - EMAIL=<e-mail>
-    # #   - DHLEVEL=4096
-    # volumes:
-    #   - </path/to/appdata/config>:/config
-    # restart: unless-stopped
   db:
     container_name: db
     image: postgres
@@ -70,6 +54,8 @@ services:
       - 443:443
     volumes:
       - ./nginx/config:/etc/nginx
+      - ./nginx/ssl/ca-key.pem:/root/ssl/ca-key.pem
+      - ./nginx/ssl/ca-cert.pem:/root/ssl/ca-cert.pem
       # - ./nginx/ssl:/etc/ssl/private
     networks:
       - app-network
