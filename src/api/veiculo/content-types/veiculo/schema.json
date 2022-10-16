@@ -71,6 +71,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::opcional.opcional"
+    },
+    "destaque": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
