@@ -42,27 +42,59 @@ services:
     networks:
       - app-network
 
-  reverseproxy:
-    container_name: reverseproxy
-    hostname: reverseproxy
-    image: nginx
+  certbot:
+    build: ./certbot
+    image: evgeniy-khyst/certbot
+    env_file:
+      - ./config.env
+    volumes:
+      - letsencrypt_certs:/etc/letsencrypt
+      - certbot_acme_challenge:/var/www/certbot
+    networks:
+      - app-network
+
+  cron:
+    build: ./cron
+    image: evgeniy-khyst/cron
+    environment:
+      COMPOSE_PROJECT_NAME: "${COMPOSE_PROJECT_NAME}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/workdir:ro
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    build: ./nginx
+    image: evgeniy-khyst/nginx
     depends_on:
       - strapi
       - meilisearch
     ports:
       - 80:80
       - 443:443
+    env_file:
+      - ./config.env
     volumes:
-      - ./nginx/config:/etc/nginx
-      - ./nginx/ssl/ca-key.pem:/root/ssl/ca-key.pem
-      - ./nginx/ssl/ca-cert.pem:/root/ssl/ca-cert.pem
+      - nginx_conf:/etc/nginx/sites
+      - letsencrypt_certs:/etc/letsencrypt
+      - certbot_acme_challenge:/var/www/certbot
+      - ./vhosts:/etc/nginx/vhosts
       # - ./nginx/ssl:/etc/ssl/private
+    restart: unless-stopped
     networks:
       - app-network
 
-# volumes:
-#   nginx:
-  # ssl:
+volumes:
+  nginx_conf:
+    external: true
+  letsencrypt_certs:
+    external: true
+  certbot_acme_challenge:
+
 networks:
   app-network:
     driver: bridge
