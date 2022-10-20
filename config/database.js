@@ -10,7 +10,8 @@ module.exports = ({ env }) => ({
       user: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       ssl: process.env.NODE_ENV === 'production' ? {
-        ca: process.env.CA_CERT
+        ca: process.env.CA_CERT,
+        rejectUnauthorized: false
       } : false,
       // ssl: false
     },
